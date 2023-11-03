@@ -327,7 +327,7 @@ enum PostgrestError {
   /// Returns a [PostgrestException] from a [json] response.
   ///
   /// The function signature matches [PostgrestException.fromJson].
-  static PostgrestException fromJsonAsPostgrestException(
+  static PostgrestException fromJson(
     Map<String, dynamic> json, {
     String? message,
     int? code,

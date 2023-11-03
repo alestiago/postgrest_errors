@@ -13,23 +13,23 @@ import 'package:http/http.dart' as http;
 import 'package:postgrest_errors/postgrest_errors.dart';
 
 void main() async {
+  // Make a request to PostgREST server:
   final client = http.Client();
-
-  // Make a request to your PostgREST server.
   final response = await client.get(
     Uri.parse('http://localhost:3000'), // PostgREST server
   );
 
+  // Parse the response:
   if (response.statusCode != 200) {
-    final errorJson = jsonDecode(response.body) as Map<String, dynamic>;
-    throw PostgrestError.fromJsonAsPostgrestException(errorJson);
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
+    throw PostgrestError.fromJson(json);
   }
 }
 ```
 
 ### Accessing raw PostgREST error data
 
-The `PostgrestError` enumeration provides all documented PostgREST Errors with their code, HTTP Status and description.
+The `PostgrestError` enhanced enumeration provides all documented PostgREST Errors with their code, HTTP Status and description.
 
 ```dart
 PostgrestError.pgrst001.code; // PGRST001
