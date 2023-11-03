@@ -1,11 +1,10 @@
 name: postgrest_errors
 description: A collection of all PostgREST errors.
-version: 0.1.0+1
+version: 0.0.0+1
 repository: https://github.com/alestiago/postgrest_errors/packages/postgrest_errors
 issue_tracker: https://github.com/alestiago/postgrest_errors/issues
 documentation: https://github.com/alestiago/postgrest_errors/packages/postgrest_errors/README.md
 topics: [server, backend, postgrest, supabase]
-publish_to: none
 
 screenshots:
   - description: The PostgREST errors logo.
