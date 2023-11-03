@@ -14,7 +14,7 @@ enum PostgrestError {
   {{#data}}
     {{#errors}}
       /// {{{description}}}
-      {{#lowerCase}}{{code}}{{/lowerCase}}._(code: '{{code}}', httpStatus: '{{httpStatus}}', description: '''{{{description}}}''',),
+      pgrst{{#lowerCase}}{{code}}{{/lowerCase}}._(code: 'PGRST{{code}}', httpStatus: '{{httpStatus}}', description: '''{{{description}}}''',),
     {{/errors}}
   {{/data}}
   ;
@@ -37,7 +37,7 @@ enum PostgrestError {
   static final _codeToExceptionBuilder = <String, PostgrestExceptionBuilder>{
 {{#data}}
   {{#errors}}
-    '{{code}}': Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception._,
+    'PGRST{{code}}': Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception._,
   {{/errors}}
 {{/data}}
   };
@@ -76,7 +76,7 @@ enum PostgrestError {
 
 {{#data}}
   {{#errors}}
-/// {@template {{#pascalCase}}{{code}}{{/pascalCase}}Exception}
+/// {@template Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception}
 /// {{description}}
 /// {@endtemplate}
 class Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception extends PostgrestException {
@@ -85,7 +85,7 @@ class Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception extends Postgrest
     required super.message,
     super.hint,
     super.details,
-  }) : super(code: '{{code}}');
+  }) : super(code: 'PGRST{{code}}');
 }
   {{/errors}}
 {{/data}}

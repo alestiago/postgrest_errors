@@ -58,7 +58,7 @@ class PostgrestError {
       );
     }
 
-    final code = tableDataElements[0].text.trim();
+    final code = tableDataElements[0].text.trim().replaceAll('PGRST', '');
     final httpStatus = tableDataElements[1].text.trim();
     final description = tableDataElements[2].text.trim();
 
