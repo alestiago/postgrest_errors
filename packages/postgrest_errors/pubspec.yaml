@@ -1,0 +1,22 @@
+name: postgrest_errors
+description: A collection of all PostgREST errors.
+version: 0.0.0+1
+repository: https://github.com/alestiago/postgrest_errors/packages/postgrest_errors
+issue_tracker: https://github.com/alestiago/postgrest_errors/issues
+documentation: https://github.com/alestiago/postgrest_errors/packages/postgrest_errors/README.md
+topics: [server, backend, postgrest, supabase]
+
+screenshots:
+  - description: The PostgREST errors logo.
+    path: assets/logo.png
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  postgrest: ^1.5.2
+
+dev_dependencies:
+  mocktail: ^1.0.0
+  test: ^1.19.2
+  very_good_analysis: ^5.1.0

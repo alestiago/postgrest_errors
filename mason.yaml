@@ -1,0 +1,3 @@
+bricks:
+  postgrest_errors:
+    path: tools/bricks/postgrest_errors

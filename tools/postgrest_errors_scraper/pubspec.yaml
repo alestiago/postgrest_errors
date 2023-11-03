@@ -1,0 +1,19 @@
+name: postgrest_errors_scraper
+description: Scrapes PostgREST errors from the web.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  equatable: ^2.0.5
+  html: ^0.15.4
+  http: ^1.1.0
+  meta: ^1.11.0
+  path: ^1.8.3
+
+dev_dependencies:
+  mocktail: ^1.0.0
+  test: ^1.19.2
+  very_good_analysis: ^5.1.0

@@ -1,0 +1,6 @@
+name: postgrest_errors
+description: Generates all PostgREST errors.
+version: 0.1.0+1
+
+environment:
+  mason: ">=0.1.0-dev.51 <0.1.0"
