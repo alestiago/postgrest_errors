@@ -1,5 +1,5 @@
 name: postgrest_errors_scraper
-description: A Very Good Project created by Very Good CLI.
+description: Scrapes PostgREST errors from the web.
 version: 0.1.0+1
 publish_to: none
 

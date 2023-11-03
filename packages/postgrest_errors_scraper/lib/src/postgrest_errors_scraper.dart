@@ -190,7 +190,7 @@ final postgrestErrorsUri = Uri.parse(
   'https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes',
 );
 
-/// Scrapes the PostgREST errors from [postgrestErrorsUri].
+/// Scrapes PostgREST errors from [postgrestErrorsUri].
 ///
 /// The retrieved HTML document should have the following structure:
 /// ```html
