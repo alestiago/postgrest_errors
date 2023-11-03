@@ -3,7 +3,8 @@
 import 'package:postgrest/postgrest.dart';
 
 /// A function that builds a [PostgrestException].
-typedef PostgrestExceptionBuilder = PostgrestException Function({
+// ignore: avoid_private_typedef_functions
+typedef _PostgrestExceptionBuilder = PostgrestException Function({
   required String message,
   dynamic details,
   String? hint,
@@ -287,7 +288,7 @@ enum PostgrestError {
   /// The error description.
   final String description;
 
-  static final _codeToExceptionBuilder = <String, PostgrestExceptionBuilder>{
+  static final _codeToExceptionBuilder = <String, _PostgrestExceptionBuilder>{
     'PGRST000': Postgrest000Exception._,
     'PGRST001': Postgrest001Exception._,
     'PGRST002': Postgrest002Exception._,

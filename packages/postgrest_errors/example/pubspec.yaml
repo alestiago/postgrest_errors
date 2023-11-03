@@ -1,0 +1,12 @@
+name: postgrest_errors_example
+description: Example project for "package:postgrest_errors".
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  http: ^1.1.0
+  postgrest_errors:
+    path: ../
