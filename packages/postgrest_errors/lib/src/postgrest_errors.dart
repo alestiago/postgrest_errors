@@ -1,11 +1,10 @@
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: lines_longer_than_80_chars, avoid_unused_constructor_parameters
 
 import 'package:postgrest/postgrest.dart';
 
 /// A function that builds a [PostgrestException].
 typedef PostgrestExceptionBuilder = PostgrestException Function({
   required String message,
-  String? code,
   dynamic details,
   String? hint,
 });
@@ -36,18 +35,7 @@ enum PostgrestError {
   final String description;
 
   static final _codeToExceptionBuilder = <String, PostgrestExceptionBuilder>{
-    'PGRST001': ({
-      required String message,
-      String? code,
-      String? hint,
-      dynamic details,
-    }) {
-      return Postgrest001Exception._(
-        message: message,
-        hint: hint,
-        details: details,
-      );
-    },
+    'PGRST001': Postgrest001Exception._,
   };
 
   /// Returns a [PostgrestException] from a [json] response.
@@ -68,7 +56,6 @@ enum PostgrestError {
     if (exceptionBuilder != null) {
       return exceptionBuilder(
         message: exceptionMessage,
-        code: exceptionCode,
         details: exceptionDetails,
         hint: exceptionHint,
       );
