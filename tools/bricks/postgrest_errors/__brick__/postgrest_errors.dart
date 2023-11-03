@@ -13,8 +13,8 @@ typedef PostgrestExceptionBuilder = PostgrestException Function({
 enum PostgrestError {
   {{#data}}
     {{#errors}}
-      /// {{description}}
-      {{#lowerCase}}{{code}}{{/lowerCase}}._(code: '{{code}}', httpStatus: '{{httpStatus}}', description: '''{{description}}''',),
+      /// {{{description}}}
+      {{#lowerCase}}{{code}}{{/lowerCase}}._(code: '{{code}}', httpStatus: '{{httpStatus}}', description: '''{{{description}}}''',),
     {{/errors}}
   {{/data}}
   ;
@@ -35,7 +35,11 @@ enum PostgrestError {
   final String description;
 
   static final _codeToExceptionBuilder = <String, PostgrestExceptionBuilder>{
-    'PGRST001': Postgrest001Exception._,
+{{#data}}
+  {{#errors}}
+    '{{code}}': Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception._,
+  {{/errors}}
+{{/data}}
   };
 
   /// Returns a [PostgrestException] from a [json] response.
