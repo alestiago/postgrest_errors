@@ -1,0 +1,3 @@
+bricks:
+  postgrest_errors:
+    path: bricks/postgrest_errors
