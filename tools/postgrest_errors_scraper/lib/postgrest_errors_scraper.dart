@@ -270,8 +270,6 @@ void main() async {
   final projectRoot = Directory.current.parent.parent;
   final filePath = path.join(
     projectRoot.path,
-    'bricks',
-    'postgrest_errors',
     'data',
     'errors.json',
   );

@@ -11,13 +11,13 @@ typedef PostgrestExceptionBuilder = PostgrestException Function({
 
 /// An error thrown by PostgREST.
 enum PostgrestError {
-  /// Could not connect with the database due to an incorrect db-uri or due to an internal error.
-  pgrst001._(
-    code: 'PGRST001',
-    httpStatus: '503',
-    description:
-        '''Could not connect with the database due to an internal error.''',
-  );
+  {{#data}}
+    {{#errors}}
+      /// {{description}}
+      {{#lowerCase}}{{code}}{{/lowerCase}}._(code: '{{code}}', httpStatus: '{{httpStatus}}', description: '''{{description}}''',),
+    {{/errors}}
+  {{/data}}
+  ;
 
   const PostgrestError._({
     required this.code,
@@ -70,14 +70,18 @@ enum PostgrestError {
   }
 }
 
-/// {@template Postgrest001Exception}
-/// Could not connect with the database due to an internal error.
+{{#data}}
+  {{#errors}}
+/// {@template {{#pascalCase}}{{code}}{{/pascalCase}}Exception}
+/// {{description}}
 /// {@endtemplate}
-class Postgrest001Exception extends PostgrestException {
-  /// {@macro Postgrest001Exception}
-  Postgrest001Exception._({
+class Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception extends PostgrestException {
+  /// {@macro {{#pascalCase}}{{code}}{{/pascalCase}}Exception}
+  Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception._({
     required super.message,
     super.hint,
     super.details,
-  }) : super(code: PostgrestError.pgrst001.code);
+  }) : super(code: '{{code}}');
 }
+  {{/errors}}
+{{/data}}
