@@ -1,12 +1,16 @@
 # PostgREST errors
 
+[![ci](https://img.shields.io/github/actions/workflow/status/alestiago/postgrest_errors/postgrest_errors_package.yaml)](https://github.com/alestiago/postgrest_errors/actions)
 ![coverage](https://img.shields.io/badge/coverage-100-gree)
+[![pub package](https://img.shields.io/pub/v/postgrest_errors.svg)](https://pub.dev/packages/postgrest_errors)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
+---
+
 A generated collection of all [PostgREST error](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) definitions in Dart.
 
-## Usage
+## Usage 🧑‍💻
 
 ### Accessing raw PostgREST error data
 
