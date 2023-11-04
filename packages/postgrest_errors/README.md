@@ -2,7 +2,7 @@
 
 # PostgREST errors
 
-[![ci](https://img.shields.io/github/actions/workflow/status/alestiago/postgrest_errors/postgrest_errors_package.yaml)](https://github.com/alestiago/postgrest_errors/actions)
+[![ci](https://img.shields.io/github/actions/workflow/status/alestiago/postgrest_errors/postgrest_errors_dart_package.yaml)](https://github.com/alestiago/postgrest_errors/actions)
 ![coverage](https://img.shields.io/badge/coverage-100-green)
 [![pub package](https://img.shields.io/pub/v/postgrest_errors.svg)](https://pub.dev/packages/postgrest_errors)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)

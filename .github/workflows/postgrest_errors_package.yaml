@@ -1,4 +1,4 @@
-name: postgrest_errors_package
+name: postgrest_errors_dart_package
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
