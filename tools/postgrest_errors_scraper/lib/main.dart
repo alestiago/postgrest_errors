@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:path/path.dart' as path;
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
 import 'package:postgrest_errors_scraper/postgrest_errors_scraper.dart';
 
 /// Will scrape the PostgREST errors and update the static JSON data file.

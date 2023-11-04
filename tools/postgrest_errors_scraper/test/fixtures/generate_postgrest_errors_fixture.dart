@@ -9,9 +9,9 @@
 // Alternatively, you may use the "Run" CodeLens provided by the Dart extension
 // in Visual Studio Code.
 //
-// **NOTE**: This script does a real HTTP request to the Postgrest website, so it may
-// take a while to complete and should be used with caution to avoid a possible
-// ban from the Postgrest website due to excessive requests.
+// **NOTE**: This script does a real HTTP request to the Postgrest website, so
+// it may take a while to complete and should be used with caution to avoid a
+// possible ban from the Postgrest website due to excessive requests.
 
 import 'dart:io';
 import 'package:http/http.dart' as http;
