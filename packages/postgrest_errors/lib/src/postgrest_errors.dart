@@ -265,7 +265,7 @@ enum PostgrestError {
   ),
 
   /// Internal errors related to the library used for connecting to the database.
-  pgrstx00._(
+  pgrstX00._(
     code: 'PGRSTX00',
     httpStatus: '500',
     description:
@@ -289,39 +289,39 @@ enum PostgrestError {
   final String description;
 
   static final _codeToExceptionBuilder = <String, _PostgrestExceptionBuilder>{
-    'PGRST000': Postgrest000Exception._,
-    'PGRST001': Postgrest001Exception._,
-    'PGRST002': Postgrest002Exception._,
-    'PGRST003': Postgrest003Exception._,
-    'PGRST100': Postgrest100Exception._,
-    'PGRST101': Postgrest101Exception._,
-    'PGRST102': Postgrest102Exception._,
-    'PGRST103': Postgrest103Exception._,
-    'PGRST105': Postgrest105Exception._,
-    'PGRST106': Postgrest106Exception._,
-    'PGRST107': Postgrest107Exception._,
-    'PGRST108': Postgrest108Exception._,
-    'PGRST109': Postgrest109Exception._,
-    'PGRST110': Postgrest110Exception._,
-    'PGRST111': Postgrest111Exception._,
-    'PGRST112': Postgrest112Exception._,
-    'PGRST113': Postgrest113Exception._,
-    'PGRST114': Postgrest114Exception._,
-    'PGRST115': Postgrest115Exception._,
-    'PGRST116': Postgrest116Exception._,
-    'PGRST117': Postgrest117Exception._,
-    'PGRST118': Postgrest118Exception._,
-    'PGRST119': Postgrest119Exception._,
-    'PGRST120': Postgrest120Exception._,
-    'PGRST200': Postgrest200Exception._,
-    'PGRST201': Postgrest201Exception._,
-    'PGRST202': Postgrest202Exception._,
-    'PGRST203': Postgrest203Exception._,
-    'PGRST204': Postgrest204Exception._,
-    'PGRST300': Postgrest300Exception._,
-    'PGRST301': Postgrest301Exception._,
-    'PGRST302': Postgrest302Exception._,
-    'PGRSTX00': PostgrestX00Exception._,
+    'PGRST000': Postgrest000Exception.new,
+    'PGRST001': Postgrest001Exception.new,
+    'PGRST002': Postgrest002Exception.new,
+    'PGRST003': Postgrest003Exception.new,
+    'PGRST100': Postgrest100Exception.new,
+    'PGRST101': Postgrest101Exception.new,
+    'PGRST102': Postgrest102Exception.new,
+    'PGRST103': Postgrest103Exception.new,
+    'PGRST105': Postgrest105Exception.new,
+    'PGRST106': Postgrest106Exception.new,
+    'PGRST107': Postgrest107Exception.new,
+    'PGRST108': Postgrest108Exception.new,
+    'PGRST109': Postgrest109Exception.new,
+    'PGRST110': Postgrest110Exception.new,
+    'PGRST111': Postgrest111Exception.new,
+    'PGRST112': Postgrest112Exception.new,
+    'PGRST113': Postgrest113Exception.new,
+    'PGRST114': Postgrest114Exception.new,
+    'PGRST115': Postgrest115Exception.new,
+    'PGRST116': Postgrest116Exception.new,
+    'PGRST117': Postgrest117Exception.new,
+    'PGRST118': Postgrest118Exception.new,
+    'PGRST119': Postgrest119Exception.new,
+    'PGRST120': Postgrest120Exception.new,
+    'PGRST200': Postgrest200Exception.new,
+    'PGRST201': Postgrest201Exception.new,
+    'PGRST202': Postgrest202Exception.new,
+    'PGRST203': Postgrest203Exception.new,
+    'PGRST204': Postgrest204Exception.new,
+    'PGRST300': Postgrest300Exception.new,
+    'PGRST301': Postgrest301Exception.new,
+    'PGRST302': Postgrest302Exception.new,
+    'PGRSTX00': PostgrestX00Exception.new,
   };
 
   /// Returns a [PostgrestException] from a [json] response.
@@ -361,7 +361,7 @@ enum PostgrestError {
 /// {@endtemplate}
 class Postgrest000Exception extends PostgrestException {
   /// {@macro 000Exception}
-  Postgrest000Exception._({
+  Postgrest000Exception({
     required super.message,
     super.hint,
     super.details,
@@ -373,7 +373,7 @@ class Postgrest000Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest001Exception extends PostgrestException {
   /// {@macro 001Exception}
-  Postgrest001Exception._({
+  Postgrest001Exception({
     required super.message,
     super.hint,
     super.details,
@@ -385,7 +385,7 @@ class Postgrest001Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest002Exception extends PostgrestException {
   /// {@macro 002Exception}
-  Postgrest002Exception._({
+  Postgrest002Exception({
     required super.message,
     super.hint,
     super.details,
@@ -397,7 +397,7 @@ class Postgrest002Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest003Exception extends PostgrestException {
   /// {@macro 003Exception}
-  Postgrest003Exception._({
+  Postgrest003Exception({
     required super.message,
     super.hint,
     super.details,
@@ -409,7 +409,7 @@ class Postgrest003Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest100Exception extends PostgrestException {
   /// {@macro 100Exception}
-  Postgrest100Exception._({
+  Postgrest100Exception({
     required super.message,
     super.hint,
     super.details,
@@ -421,7 +421,7 @@ class Postgrest100Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest101Exception extends PostgrestException {
   /// {@macro 101Exception}
-  Postgrest101Exception._({
+  Postgrest101Exception({
     required super.message,
     super.hint,
     super.details,
@@ -433,7 +433,7 @@ class Postgrest101Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest102Exception extends PostgrestException {
   /// {@macro 102Exception}
-  Postgrest102Exception._({
+  Postgrest102Exception({
     required super.message,
     super.hint,
     super.details,
@@ -445,7 +445,7 @@ class Postgrest102Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest103Exception extends PostgrestException {
   /// {@macro 103Exception}
-  Postgrest103Exception._({
+  Postgrest103Exception({
     required super.message,
     super.hint,
     super.details,
@@ -457,7 +457,7 @@ class Postgrest103Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest105Exception extends PostgrestException {
   /// {@macro 105Exception}
-  Postgrest105Exception._({
+  Postgrest105Exception({
     required super.message,
     super.hint,
     super.details,
@@ -469,7 +469,7 @@ class Postgrest105Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest106Exception extends PostgrestException {
   /// {@macro 106Exception}
-  Postgrest106Exception._({
+  Postgrest106Exception({
     required super.message,
     super.hint,
     super.details,
@@ -481,7 +481,7 @@ class Postgrest106Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest107Exception extends PostgrestException {
   /// {@macro 107Exception}
-  Postgrest107Exception._({
+  Postgrest107Exception({
     required super.message,
     super.hint,
     super.details,
@@ -493,7 +493,7 @@ class Postgrest107Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest108Exception extends PostgrestException {
   /// {@macro 108Exception}
-  Postgrest108Exception._({
+  Postgrest108Exception({
     required super.message,
     super.hint,
     super.details,
@@ -505,7 +505,7 @@ class Postgrest108Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest109Exception extends PostgrestException {
   /// {@macro 109Exception}
-  Postgrest109Exception._({
+  Postgrest109Exception({
     required super.message,
     super.hint,
     super.details,
@@ -517,7 +517,7 @@ class Postgrest109Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest110Exception extends PostgrestException {
   /// {@macro 110Exception}
-  Postgrest110Exception._({
+  Postgrest110Exception({
     required super.message,
     super.hint,
     super.details,
@@ -529,7 +529,7 @@ class Postgrest110Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest111Exception extends PostgrestException {
   /// {@macro 111Exception}
-  Postgrest111Exception._({
+  Postgrest111Exception({
     required super.message,
     super.hint,
     super.details,
@@ -541,7 +541,7 @@ class Postgrest111Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest112Exception extends PostgrestException {
   /// {@macro 112Exception}
-  Postgrest112Exception._({
+  Postgrest112Exception({
     required super.message,
     super.hint,
     super.details,
@@ -553,7 +553,7 @@ class Postgrest112Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest113Exception extends PostgrestException {
   /// {@macro 113Exception}
-  Postgrest113Exception._({
+  Postgrest113Exception({
     required super.message,
     super.hint,
     super.details,
@@ -565,7 +565,7 @@ class Postgrest113Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest114Exception extends PostgrestException {
   /// {@macro 114Exception}
-  Postgrest114Exception._({
+  Postgrest114Exception({
     required super.message,
     super.hint,
     super.details,
@@ -577,7 +577,7 @@ class Postgrest114Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest115Exception extends PostgrestException {
   /// {@macro 115Exception}
-  Postgrest115Exception._({
+  Postgrest115Exception({
     required super.message,
     super.hint,
     super.details,
@@ -589,7 +589,7 @@ class Postgrest115Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest116Exception extends PostgrestException {
   /// {@macro 116Exception}
-  Postgrest116Exception._({
+  Postgrest116Exception({
     required super.message,
     super.hint,
     super.details,
@@ -601,7 +601,7 @@ class Postgrest116Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest117Exception extends PostgrestException {
   /// {@macro 117Exception}
-  Postgrest117Exception._({
+  Postgrest117Exception({
     required super.message,
     super.hint,
     super.details,
@@ -613,7 +613,7 @@ class Postgrest117Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest118Exception extends PostgrestException {
   /// {@macro 118Exception}
-  Postgrest118Exception._({
+  Postgrest118Exception({
     required super.message,
     super.hint,
     super.details,
@@ -625,7 +625,7 @@ class Postgrest118Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest119Exception extends PostgrestException {
   /// {@macro 119Exception}
-  Postgrest119Exception._({
+  Postgrest119Exception({
     required super.message,
     super.hint,
     super.details,
@@ -637,7 +637,7 @@ class Postgrest119Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest120Exception extends PostgrestException {
   /// {@macro 120Exception}
-  Postgrest120Exception._({
+  Postgrest120Exception({
     required super.message,
     super.hint,
     super.details,
@@ -649,7 +649,7 @@ class Postgrest120Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest200Exception extends PostgrestException {
   /// {@macro 200Exception}
-  Postgrest200Exception._({
+  Postgrest200Exception({
     required super.message,
     super.hint,
     super.details,
@@ -661,7 +661,7 @@ class Postgrest200Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest201Exception extends PostgrestException {
   /// {@macro 201Exception}
-  Postgrest201Exception._({
+  Postgrest201Exception({
     required super.message,
     super.hint,
     super.details,
@@ -673,7 +673,7 @@ class Postgrest201Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest202Exception extends PostgrestException {
   /// {@macro 202Exception}
-  Postgrest202Exception._({
+  Postgrest202Exception({
     required super.message,
     super.hint,
     super.details,
@@ -685,7 +685,7 @@ class Postgrest202Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest203Exception extends PostgrestException {
   /// {@macro 203Exception}
-  Postgrest203Exception._({
+  Postgrest203Exception({
     required super.message,
     super.hint,
     super.details,
@@ -697,7 +697,7 @@ class Postgrest203Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest204Exception extends PostgrestException {
   /// {@macro 204Exception}
-  Postgrest204Exception._({
+  Postgrest204Exception({
     required super.message,
     super.hint,
     super.details,
@@ -709,7 +709,7 @@ class Postgrest204Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest300Exception extends PostgrestException {
   /// {@macro 300Exception}
-  Postgrest300Exception._({
+  Postgrest300Exception({
     required super.message,
     super.hint,
     super.details,
@@ -721,7 +721,7 @@ class Postgrest300Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest301Exception extends PostgrestException {
   /// {@macro 301Exception}
-  Postgrest301Exception._({
+  Postgrest301Exception({
     required super.message,
     super.hint,
     super.details,
@@ -733,7 +733,7 @@ class Postgrest301Exception extends PostgrestException {
 /// {@endtemplate}
 class Postgrest302Exception extends PostgrestException {
   /// {@macro 302Exception}
-  Postgrest302Exception._({
+  Postgrest302Exception({
     required super.message,
     super.hint,
     super.details,
@@ -745,7 +745,7 @@ class Postgrest302Exception extends PostgrestException {
 /// {@endtemplate}
 class PostgrestX00Exception extends PostgrestException {
   /// {@macro X00Exception}
-  PostgrestX00Exception._({
+  PostgrestX00Exception({
     required super.message,
     super.hint,
     super.details,
