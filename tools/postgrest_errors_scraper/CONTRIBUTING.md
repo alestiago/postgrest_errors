@@ -23,7 +23,15 @@ dart pub get
 
 3. Ensure you have a meaningful [semantic][conventional_commits_link] commit message.
 
-4. Add tests! Pull Requests without test coverage will **not** be merged. If you're unsure on how to do so watch our [Testing Fundamentals Course](https://www.youtube.com/watch?v=M_eZg-X789w&list=PLprI2satkVdFwpxo_bjFkCxXz5RluG8FY).
+4. Add tests! Pull Requests without 100% test coverage will **not** be merged. If you're unsure on how to do so watch our [Testing Fundamentals Course](https://www.youtube.com/watch?v=M_eZg-X789w&list=PLprI2satkVdFwpxo_bjFkCxXz5RluG8FY).
+
+```sh
+# 🧪 Run tests and open collected coverage data (from: tools/postgrest_errors_scraper)
+dart test -j 4 --coverage=coverage --platform="vm" &&
+dart pub global run coverage:format_coverage --lcov --check-ignore --in=coverage --out=coverage/lcov.info --package="." --report-on="lib" &&
+genhtml -o coverage/html coverage/lcov.info &&
+open coverage/html/index.html
+```
 
 5. Ensure the existing test suite passes locally:
 
