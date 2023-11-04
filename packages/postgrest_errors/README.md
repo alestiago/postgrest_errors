@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
-A generated collection of all [PostgREST errors](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) errors definitions in Dart.
+A generated collection of all [PostgREST error](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) definitions in Dart.
 
 ## Usage
 
