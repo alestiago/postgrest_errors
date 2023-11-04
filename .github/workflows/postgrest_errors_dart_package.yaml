@@ -1,3 +1,5 @@
+# NOTE: When renaming this workflow file name, make sure to rename the workflow badge in README.md
+# of the `package:postgrest_errors`.
 name: postgrest_errors_dart_package
 
 concurrency:
@@ -7,13 +9,13 @@ concurrency:
 on:
   push:
     paths:
-      - .github/workflows/postgrest_errors.yaml
+      - .github/workflows/postgrest_errors_dart_package.yaml
       - "packages/postgrest_errors/**"
     branches:
       - main
   pull_request:
     paths:
-      - .github/workflows/postgrest_errors.yaml
+      - .github/workflows/postgrest_errors_dart_package.yaml
       - "packages/postgrest_errors/**"
     branches:
       - main
