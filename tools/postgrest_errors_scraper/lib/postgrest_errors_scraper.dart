@@ -1,11 +1,13 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:html/dom.dart' as html_dom;
 import 'package:html/parser.dart' as html_parser;
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as path;
 import 'package:meta/meta.dart';
+
+/// The URI to scrape the PostgREST errors from.
+@visibleForTesting
+final postgrestErrorsUri = Uri.parse(
+  'https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes',
+);
 
 /// {@template PostgrestErrorsScraperException}
 /// An exception thrown when PostgrestErrorsScraper fails.
@@ -30,6 +32,7 @@ class PostgrestErrorsScraperException implements Exception {
 /// {@endtemplate}
 class PostgrestError {
   /// {@macro _PostgrestError}
+  @visibleForTesting
   const PostgrestError({
     required this.code,
     required this.httpStatus,
@@ -93,6 +96,7 @@ class PostgrestError {
 /// {@endtemplate}
 class PostgrestErrorGroup {
   /// {@macro _PostgrestErrorGroup}
+  @visibleForTesting
   const PostgrestErrorGroup({
     required this.name,
     required this.description,
@@ -190,10 +194,13 @@ class PostgrestErrorGroup {
   }
 }
 
-/// The URI to scrape the PostgREST errors from.
-final postgrestErrorsUri = Uri.parse(
-  'https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes',
-);
+/// Function signature of [html_parser.parse].
+typedef _HtmlParse = html_dom.Document Function(
+  dynamic input, {
+  String? encoding,
+  bool generateSpans,
+  String? sourceUrl,
+});
 
 /// Scrapes PostgREST errors from [postgrestErrorsUri].
 ///
@@ -208,21 +215,20 @@ final postgrestErrorsUri = Uri.parse(
 /// </div>
 /// ```
 Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
-  @visibleForTesting http.Client? clientOverride,
+  required http.Client client,
+  @visibleForTesting _HtmlParse htmlParser = html_parser.parse,
 }) async {
-  final client = clientOverride ?? http.Client();
+  final response = await client.get(postgrestErrorsUri);
 
-  final request = await client.get(postgrestErrorsUri);
-
-  if (request.statusCode != 200) {
+  if (response.statusCode != 200) {
     throw PostgrestErrorsScraperException(
-      '''Request to "$postgrestErrorsUri" failed with status code "${request.statusCode}"''',
+      '''Request to "$postgrestErrorsUri" failed with status code "${response.statusCode}"''',
     );
   }
 
   late final html_dom.Document document;
   try {
-    document = html_parser.parse(request.body);
+    document = htmlParser(response.body);
   } catch (e) {
     throw PostgrestErrorsScraperException(
       'Failed to parse the HTML document',
@@ -258,22 +264,4 @@ Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
   }
 
   return groups;
-}
-
-/// Will scrape the PostgREST errors and update the static JSON data file.
-void main() async {
-  final groups = await scrapePostgrestErrors();
-
-  final jsonGroups = groups.map((e) => e.toJson()).toList();
-  final json = jsonEncode(jsonGroups);
-
-  final projectRoot = Directory.current.parent.parent;
-  final filePath = path.join(
-    projectRoot.path,
-    'data',
-    'errors.json',
-  );
-  File(filePath)
-    ..createSync(recursive: true)
-    ..writeAsStringSync(json);
 }

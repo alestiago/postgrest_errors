@@ -1,0 +1,25 @@
+name: postgrest_errors_scraper
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    paths:
+      - .github/workflows/postgrest_errors_scraper.yaml
+      - "tools/postgrest_errors_scraper/**"
+    branches:
+      - main
+  pull_request:
+    paths:
+      - .github/workflows/postgrest_errors_scraper.yaml
+      - "tools/postgrest_errors_scraper/**"
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    with:
+      working_directory: "tools/postgrest_errors_scraper"

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Errors &mdash; PostgREST 11.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script async="async" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Schema Cache" href="schema_cache.html" /> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "references/errors", "programming_language": "py", "project": "postgrest", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "G-5CGB3QTKF1", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PostgREST
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Release Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v11.2.1.html">11.2.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v11.2.0.html">11.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v11.1.0.html">11.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v11.0.1.html">11.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v10.2.0.html">10.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v10.0.0.html">10.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v09.0.1.html">9.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/v09.0.0.html">9.0.0</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tut0.html">Tutorial 0 - Get it Running</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tut1.html">Tutorial 1 - The Golden Key</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transactions.html">Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connection_pool.html">Connection Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema_cache.html">Schema Cache</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#errors-from-postgresql">Errors from PostgreSQL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raise-errors-with-http-status-codes">RAISE errors with HTTP Status Codes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#errors-from-postgrest">Errors from PostgREST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#postgrest-error-codes">PostgREST Error Codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#group-0-connection">Group 0 - Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#group-1-api-request">Group 1 - Api Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#group-2-schema-cache">Group 2 - Schema Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#group-3-jwt">Group 3 - JWT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#group-x-internal">Group X - Internal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Admin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/db_authz.html">Database Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/nginx.html">Nginx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/sql-user-management.html">SQL User Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/sql-user-management-using-postgres-users-and-passwords.html">SQL User Management using postgres’ users and passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/working-with-postgresql-data-types.html">Working with PostgreSQL data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/create-soap-endpoint.html">Create a SOAP endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/providing-images-for-img.html">Providing images for <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../integrations/greenplum.html">Greenplum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations/jwt_gen.html">External JWT Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations/pg-safeupdate.html">pg-safeupdate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations/systemd.html">systemd</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ecosystem</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html">Community Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html#templates">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html#example-apps">Example Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html#devops">DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html#external-notification">External Notification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html#extensions">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ecosystem.html#client-side-libraries">Client-Side Libraries</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PostgREST</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Errors</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/postgrest/postgrest-docs/blob/v11.2/docs/references/errors.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="errors">
+<span id="error-source"></span><h1>Errors<a class="headerlink" href="#errors" title="Permalink to this headline"></a></h1>
+<p>PostgREST error messages follow the PostgreSQL error structure. It includes <code class="docutils literal notranslate"><span class="pre">MESSAGE</span></code>, <code class="docutils literal notranslate"><span class="pre">DETAIL</span></code>, <code class="docutils literal notranslate"><span class="pre">HINT</span></code>, <code class="docutils literal notranslate"><span class="pre">ERRCODE</span></code> and will add an HTTP status code to the response.</p>
+<div class="section" id="errors-from-postgresql">
+<h2>Errors from PostgreSQL<a class="headerlink" href="#errors-from-postgresql" title="Permalink to this headline"></a></h2>
+<p>PostgREST will forward errors coming from PostgreSQL. For instance, when querying a nonexistent table:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/nonexistent_table?id=eq.1</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</pre></div>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">404</span> <span class="ne">Not Found</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;hint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;42P01&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;relation \&quot;api.nonexistent_table\&quot; does not exist&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="http-status-codes">
+<span id="status-codes"></span><h3>HTTP Status Codes<a class="headerlink" href="#http-status-codes" title="Permalink to this headline"></a></h3>
+<p>PostgREST translates <a class="reference external" href="https://www.postgresql.org/docs/current/errcodes-appendix.html">PostgreSQL error codes</a> into HTTP status as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 30%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>PostgreSQL error code(s)</p></th>
+<th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Error description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>08*</p></td>
+<td><p>503</p></td>
+<td><p>pg connection err</p></td>
+</tr>
+<tr class="row-odd"><td><p>09*</p></td>
+<td><p>500</p></td>
+<td><p>triggered action exception</p></td>
+</tr>
+<tr class="row-even"><td><p>0L*</p></td>
+<td><p>403</p></td>
+<td><p>invalid grantor</p></td>
+</tr>
+<tr class="row-odd"><td><p>0P*</p></td>
+<td><p>403</p></td>
+<td><p>invalid role specification</p></td>
+</tr>
+<tr class="row-even"><td><p>23503</p></td>
+<td><p>409</p></td>
+<td><p>foreign key violation</p></td>
+</tr>
+<tr class="row-odd"><td><p>23505</p></td>
+<td><p>409</p></td>
+<td><p>uniqueness violation</p></td>
+</tr>
+<tr class="row-even"><td><p>25006</p></td>
+<td><p>405</p></td>
+<td><p>read only sql transaction</p></td>
+</tr>
+<tr class="row-odd"><td><p>25*</p></td>
+<td><p>500</p></td>
+<td><p>invalid transaction state</p></td>
+</tr>
+<tr class="row-even"><td><p>28*</p></td>
+<td><p>403</p></td>
+<td><p>invalid auth specification</p></td>
+</tr>
+<tr class="row-odd"><td><p>2D*</p></td>
+<td><p>500</p></td>
+<td><p>invalid transaction termination</p></td>
+</tr>
+<tr class="row-even"><td><p>38*</p></td>
+<td><p>500</p></td>
+<td><p>external routine exception</p></td>
+</tr>
+<tr class="row-odd"><td><p>39*</p></td>
+<td><p>500</p></td>
+<td><p>external routine invocation</p></td>
+</tr>
+<tr class="row-even"><td><p>3B*</p></td>
+<td><p>500</p></td>
+<td><p>savepoint exception</p></td>
+</tr>
+<tr class="row-odd"><td><p>40*</p></td>
+<td><p>500</p></td>
+<td><p>transaction rollback</p></td>
+</tr>
+<tr class="row-even"><td><p>53*</p></td>
+<td><p>503</p></td>
+<td><p>insufficient resources</p></td>
+</tr>
+<tr class="row-odd"><td><p>54*</p></td>
+<td><p>413</p></td>
+<td><p>too complex</p></td>
+</tr>
+<tr class="row-even"><td><p>55*</p></td>
+<td><p>500</p></td>
+<td><p>obj not in prerequisite state</p></td>
+</tr>
+<tr class="row-odd"><td><p>57*</p></td>
+<td><p>500</p></td>
+<td><p>operator intervention</p></td>
+</tr>
+<tr class="row-even"><td><p>58*</p></td>
+<td><p>500</p></td>
+<td><p>system error</p></td>
+</tr>
+<tr class="row-odd"><td><p>F0*</p></td>
+<td><p>500</p></td>
+<td><p>config file error</p></td>
+</tr>
+<tr class="row-even"><td><p>HV*</p></td>
+<td><p>500</p></td>
+<td><p>foreign data wrapper error</p></td>
+</tr>
+<tr class="row-odd"><td><p>P0001</p></td>
+<td><p>400</p></td>
+<td><p>default code for “raise”</p></td>
+</tr>
+<tr class="row-even"><td><p>P0*</p></td>
+<td><p>500</p></td>
+<td><p>PL/pgSQL error</p></td>
+</tr>
+<tr class="row-odd"><td><p>XX*</p></td>
+<td><p>500</p></td>
+<td><p>internal error</p></td>
+</tr>
+<tr class="row-even"><td><p>42883</p></td>
+<td><p>404</p></td>
+<td><p>undefined function</p></td>
+</tr>
+<tr class="row-odd"><td><p>42P01</p></td>
+<td><p>404</p></td>
+<td><p>undefined table</p></td>
+</tr>
+<tr class="row-even"><td><p>42501</p></td>
+<td><div class="line-block">
+<div class="line">if authenticated 403,</div>
+<div class="line">else 401</div>
+</div>
+</td>
+<td><p>insufficient privileges</p></td>
+</tr>
+<tr class="row-odd"><td><p>other</p></td>
+<td><p>400</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="raise-errors-with-http-status-codes">
+<span id="raise-error"></span><h3>RAISE errors with HTTP Status Codes<a class="headerlink" href="#raise-errors-with-http-status-codes" title="Permalink to this headline"></a></h3>
+<p>You can return custom HTTP status codes by raising SQL exceptions inside <a class="reference internal" href="api/stored_procedures.html#s-procs"><span class="std std-ref">functions</span></a>. For instance, here’s a saucy function that always responds with an error:</p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">just_fail</span><span class="p">()</span><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">void</span>
+<span class="w">  </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span>
+<span class="w">  </span><span class="k">AS</span><span class="w"> </span><span class="s">$$</span>
+<span class="k">BEGIN</span>
+<span class="w">  </span><span class="k">RAISE</span><span class="w"> </span><span class="k">EXCEPTION</span><span class="w"> </span><span class="s1">&#39;I refuse!&#39;</span>
+<span class="w">    </span><span class="k">USING</span><span class="w"> </span><span class="n">DETAIL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Pretty simple&#39;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">HINT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;There is nothing you can do.&#39;</span><span class="p">;</span>
+<span class="k">END</span>
+<span class="s">$$</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Calling the function returns HTTP 400 with the body</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;I refuse!&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="s2">&quot;Pretty simple&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;hint&quot;</span><span class="p">:</span><span class="s2">&quot;There is nothing you can do.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;P0001&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>One way to customize the HTTP status code is by raising particular exceptions according to the PostgREST <a class="reference internal" href="#status-codes"><span class="std std-ref">error to status code mapping</span></a>. For example, <code class="code docutils literal notranslate"><span class="pre">RAISE</span> <span class="pre">insufficient_privilege</span></code> will respond with HTTP 401/403 as appropriate.</p>
+<p>For even greater control of the HTTP status code, raise an exception of the <code class="docutils literal notranslate"><span class="pre">PTxyz</span></code> type. For instance to respond with HTTP 402, raise <code class="docutils literal notranslate"><span class="pre">PT402</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">RAISE</span><span class="w"> </span><span class="k">sqlstate</span><span class="w"> </span><span class="s1">&#39;PT402&#39;</span><span class="w"> </span><span class="k">using</span>
+<span class="w">  </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Payment Required&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">detail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Quota exceeded&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">hint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Upgrade your plan&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Returns:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">402</span> <span class="ne">Payment Required</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Payment Required&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Quota exceeded&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;hint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upgrade your plan&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT402&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="errors-from-postgrest">
+<h2>Errors from PostgREST<a class="headerlink" href="#errors-from-postgrest" title="Permalink to this headline"></a></h2>
+<p>Errors that come from PostgREST itself maintain the same structure. But differ in the <code class="docutils literal notranslate"><span class="pre">PGRST</span></code> prefix in the <code class="docutils literal notranslate"><span class="pre">code</span></code> field. For instance, when querying a function that does not exist in the <a class="reference internal" href="schema_cache.html"><span class="doc">schema cache</span></a>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/rpc/nonexistent_function</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</pre></div>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">404</span> <span class="ne">Not Found</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;hint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PGRST202&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Could not find the api.nonexistent_function() function in the schema cache&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="postgrest-error-codes">
+<span id="pgrst-errors"></span><h3>PostgREST Error Codes<a class="headerlink" href="#postgrest-error-codes" title="Permalink to this headline"></a></h3>
+<p>PostgREST error codes have the form <code class="docutils literal notranslate"><span class="pre">PGRSTgxx</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PGRST</span></code> is the prefix that differentiates the error from a PostgreSQL error.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code> is the error group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xx</span></code> is the error identifier in the group.</p></li>
+</ul>
+<div class="section" id="group-0-connection">
+<span id="pgrst0"></span><h4>Group 0 - Connection<a class="headerlink" href="#group-0-connection" title="Permalink to this headline"></a></h4>
+<p>Related to the connection with the database.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p id="pgrst000">PGRST000</p>
+</td>
+<td><p>503</p></td>
+<td><p>Could not connect with the database due to an incorrect
+<a class="reference internal" href="configuration.html#db-uri"><span class="std std-ref">db-uri</span></a> or due to the PostgreSQL service not running.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst001">PGRST001</p>
+</td>
+<td><p>503</p></td>
+<td><p>Could not connect with the database due to an internal
+error.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst002">PGRST002</p>
+</td>
+<td><p>503</p></td>
+<td><p>Could not connect with the database when building the
+<a class="reference internal" href="schema_cache.html"><span class="doc">Schema Cache</span></a>
+due to the PostgreSQL service not running.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst003">PGRST003</p>
+</td>
+<td><p>504</p></td>
+<td><p>The request timed out waiting for a pool connection
+to be available. See <a class="reference internal" href="configuration.html#db-pool-acquisition-timeout"><span class="std std-ref">db-pool-acquisition-timeout</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-1-api-request">
+<span id="pgrst1"></span><h4>Group 1 - Api Request<a class="headerlink" href="#group-1-api-request" title="Permalink to this headline"></a></h4>
+<p>Related to the HTTP request elements.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p id="pgrst100">PGRST100</p>
+</td>
+<td><p>400</p></td>
+<td><p>Parsing error in the query string parameter.
+See <a class="reference internal" href="api/tables_views.html#h-filter"><span class="std std-ref">Horizontal Filtering</span></a>, <a class="reference internal" href="api/tables_views.html#operators"><span class="std std-ref">Operators</span></a> and <a class="reference internal" href="api/tables_views.html#ordering"><span class="std std-ref">Ordering</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst101">PGRST101</p>
+</td>
+<td><p>405</p></td>
+<td><p>For <a class="reference internal" href="api/stored_procedures.html#s-procs"><span class="std std-ref">functions</span></a>, only <code class="docutils literal notranslate"><span class="pre">GET</span></code> and <code class="docutils literal notranslate"><span class="pre">POST</span></code>
+verbs are allowed. Any other verb will throw this error.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst102">PGRST102</p>
+</td>
+<td><p>400</p></td>
+<td><p>An invalid request body was sent(e.g. an empty body or
+malformed JSON).</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst103">PGRST103</p>
+</td>
+<td><p>416</p></td>
+<td><p>An invalid range was specified for <a class="reference internal" href="api/tables_views.html#limits"><span class="std std-ref">Limits and Pagination</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst105">PGRST105</p>
+</td>
+<td><p>405</p></td>
+<td><p>An invalid <a class="reference internal" href="api/tables_views.html#upsert-put"><span class="std std-ref">PUT</span></a> request was done</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst106">PGRST106</p>
+</td>
+<td><p>406</p></td>
+<td><p>The schema specified when
+<a class="reference internal" href="api/schemas.html#multiple-schemas"><span class="std std-ref">switching schemas</span></a> is not present
+in the <a class="reference internal" href="configuration.html#db-schemas"><span class="std std-ref">db-schemas</span></a> configuration variable.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst107">PGRST107</p>
+</td>
+<td><p>415</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> sent in the request is invalid.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst108">PGRST108</p>
+</td>
+<td><p>400</p></td>
+<td><p>The filter is applied to a embedded resource that is not
+specified in the <code class="docutils literal notranslate"><span class="pre">select</span></code> part of the query string.
+See <a class="reference internal" href="api/resource_embedding.html#embed-filters"><span class="std std-ref">Embedded Filters</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst109">PGRST109</p>
+</td>
+<td><p>400</p></td>
+<td><p>Restricting a Deletion or an Update using limits must
+include the ordering of a unique column.
+See <a class="reference internal" href="api/tables_views.html#limited-update-delete"><span class="std std-ref">Limited Update/Delete</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst110">PGRST110</p>
+</td>
+<td><p>400</p></td>
+<td><p>When restricting a Deletion or an Update using limits
+modifies more rows than the maximum specified in the limit.
+See <a class="reference internal" href="api/tables_views.html#limited-update-delete"><span class="std std-ref">Limited Update/Delete</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst111">PGRST111</p>
+</td>
+<td><p>500</p></td>
+<td><p>An invalid <code class="docutils literal notranslate"><span class="pre">response.headers</span></code> was set.
+See <a class="reference internal" href="transactions.html#guc-resp-hdrs"><span class="std std-ref">Response Headers</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst112">PGRST112</p>
+</td>
+<td><p>500</p></td>
+<td><p>The status code must be a positive integer.
+See <a class="reference internal" href="transactions.html#guc-resp-status"><span class="std std-ref">Response Status Code</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst113">PGRST113</p>
+</td>
+<td><p>406</p></td>
+<td><p>More than one column was returned for a scalar result.
+See <a class="reference internal" href="api/resource_representation.html#scalar-return-formats"><span class="std std-ref">Scalar Function Response Format</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst114">PGRST114</p>
+</td>
+<td><p>400</p></td>
+<td><p>For an <a class="reference internal" href="api/tables_views.html#upsert-put"><span class="std std-ref">UPSERT using PUT</span></a>, when
+<a class="reference internal" href="api/tables_views.html#limits"><span class="std std-ref">limits and offsets</span></a> are used.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst115">PGRST115</p>
+</td>
+<td><p>400</p></td>
+<td><p>For an <a class="reference internal" href="api/tables_views.html#upsert-put"><span class="std std-ref">UPSERT using PUT</span></a>, when the
+primary key in the query string and the body are different.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst116">PGRST116</p>
+</td>
+<td><p>406</p></td>
+<td><p>More than 1 or no items where returned when requesting
+a singular response. See <a class="reference internal" href="api/resource_representation.html#singular-plural"><span class="std std-ref">Singular or Plural</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst117">PGRST117</p>
+</td>
+<td><p>405</p></td>
+<td><p>The HTTP verb used in the request in not supported.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst118">PGRST118</p>
+</td>
+<td><p>400</p></td>
+<td><p>Could not order the result using the related table because
+there is no many-to-one or one-to-one relationship between
+them.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst119">PGRST119</p>
+</td>
+<td><p>400</p></td>
+<td><p>Could not use the spread operator on the related table
+because there is no many-to-one or one-to-one relationship
+between them.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst120">PGRST120</p>
+</td>
+<td><p>400</p></td>
+<td><p>An embedded resource can only be filtered using the
+<code class="docutils literal notranslate"><span class="pre">is.null</span></code> or <code class="docutils literal notranslate"><span class="pre">not.is.null</span></code> <a class="reference internal" href="api/tables_views.html#operators"><span class="std std-ref">operators</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-2-schema-cache">
+<span id="pgrst2"></span><h4>Group 2 - Schema Cache<a class="headerlink" href="#group-2-schema-cache" title="Permalink to this headline"></a></h4>
+<p>Related to a <a class="reference internal" href="schema_cache.html#stale-schema"><span class="std std-ref">stale schema cache</span></a>. Most of the time, these errors are solved by <a class="reference internal" href="schema_cache.html#schema-reloading"><span class="std std-ref">reloading the schema cache</span></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p id="pgrst200">PGRST200</p>
+</td>
+<td><p>400</p></td>
+<td><p>Caused by stale foreign key relationships, otherwise any of
+the embedding resources or the relationship itself may not
+exist in the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst201">PGRST201</p>
+</td>
+<td><p>300</p></td>
+<td><p>An ambiguous embedding request was made.
+See <a class="reference internal" href="api/resource_embedding.html#complex-rels"><span class="std std-ref">Foreign Key Joins on Multiple Foreign Key Relationships</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst202">PGRST202</p>
+</td>
+<td><p>404</p></td>
+<td><p>Caused by a stale function signature, otherwise
+the function may not exist in the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst203">PGRST203</p>
+</td>
+<td><p>300</p></td>
+<td><p>Caused by requesting overloaded functions with the same
+argument names but different types, or by using a <code class="docutils literal notranslate"><span class="pre">POST</span></code>
+verb to request overloaded functions with a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> or
+<code class="docutils literal notranslate"><span class="pre">JSONB</span></code> type unnamed parameter. The solution is to rename
+the function or add/modify the names of the arguments.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst204">PGRST204</p>
+</td>
+<td><p>400</p></td>
+<td><p>Caused when the <a class="reference internal" href="api/tables_views.html#specify-columns"><span class="std std-ref">column specified</span></a>
+in the <code class="docutils literal notranslate"><span class="pre">columns</span></code> query parameter is not found.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-3-jwt">
+<span id="pgrst3"></span><h4>Group 3 - JWT<a class="headerlink" href="#group-3-jwt" title="Permalink to this headline"></a></h4>
+<p>Related to the authentication process using JWT. You can follow the <a class="reference internal" href="../tutorials/tut1.html#tut1"><span class="std std-ref">Tutorial 1 - The Golden Key</span></a> for an example on how to implement authentication and the <a class="reference internal" href="auth.html"><span class="doc">Authentication page</span></a> for more information on this process.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p id="pgrst300">PGRST300</p>
+</td>
+<td><p>500</p></td>
+<td><p>A <a class="reference internal" href="configuration.html#jwt-secret"><span class="std std-ref">JWT secret</span></a> is missing from the
+configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="pgrst301">PGRST301</p>
+</td>
+<td><p>401</p></td>
+<td><p>Any error related to the verification of the JWT,
+which means that the JWT provided is invalid in some way.</p></td>
+</tr>
+<tr class="row-even"><td><p id="pgrst302">PGRST302</p>
+</td>
+<td><p>401</p></td>
+<td><p>Attempted to do a request without
+<a class="reference internal" href="auth.html#client-auth"><span class="std std-ref">authentication</span></a> when the anonymous role
+is disabled by not setting it in <a class="reference internal" href="configuration.html#db-anon-role"><span class="std std-ref">db-anon-role</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="group-x-internal">
+<span id="pgrst-x"></span><h4>Group X - Internal<a class="headerlink" href="#group-x-internal" title="Permalink to this headline"></a></h4>
+<p>Internal errors. If you encounter any of these, you may have stumbled on a PostgREST bug, please <a class="reference external" href="https://github.com/PostgREST/postgrest/issues">open an issue</a> and we’ll be glad to fix it.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>HTTP status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p id="pgrstx00">PGRSTX00</p>
+</td>
+<td><p>500</p></td>
+<td><p>Internal errors related to the library used for connecting
+to the database.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="schema_cache.html" class="btn btn-neutral float-left" title="Schema Cache" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Joe Nelson, Steve Chavez.
+      <span class="commit">Revision <code>23790b7e</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: stable
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="/en/latest/">latest</a></dd>
+        
+          <dd><a href="/en/stable/">stable</a></dd>
+        
+          <dd><a href="/en/v11.2/">v11.2</a></dd>
+        
+          <dd><a href="/en/v11.1/">v11.1</a></dd>
+        
+          <dd><a href="/en/v11.0/">v11.0</a></dd>
+        
+          <dd><a href="/en/v10.2/">v10.2</a></dd>
+        
+          <dd><a href="/en/v10.0/">v10.0</a></dd>
+        
+          <dd><a href="/en/v9.0/">v9.0</a></dd>
+        
+          <dd><a href="/en/v8.0/">v8.0</a></dd>
+        
+          <dd><a href="/en/v7.0.0/">v7.0.0</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+      </dl>
+      <dl>
+        
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="//readthedocs.org/projects/postgrest/?fromdocs=postgrest">Project Home</a>
+          </dd>
+          <dd>
+            <a href="//readthedocs.org/builds/postgrest/?fromdocs=postgrest">Builds</a>
+          </dd>
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
