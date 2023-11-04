@@ -6,15 +6,15 @@ A generated collection of all [PostgREST error](https://postgrest.org/en/stable/
 
 ## Packages
 
-| Packages         | Pub                                                                                                            | Descritption        |
-| ---------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- |
-| postgrest_errors | [![pub package](https://img.shields.io/pub/v/postgrest_errors.svg)](https://pub.dev/packages/postgrest_errors) | Published packages. |
+| Packages                                       | Pub                                                                                                            | Descritption        |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- |
+| [postgrest_errors](packages/postgrest_errors/) | [![pub package](https://img.shields.io/pub/v/postgrest_errors.svg)](https://pub.dev/packages/postgrest_errors) | Published packages. |
 
 ## Table of content
 
-| Directory | Description                                                                                  |
-| --------- | -------------------------------------------------------------------------------------------- |
-| packages  | Published packages.                                                                          |
-| tools     | Internal packages uses to support the development and maintenance of the published packages. |
-| data      | Scraped PostGREST error data.                                                                |
-| .github   | GitHub related configurations.                                                               |
+| Directory            | Description                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| [packages](packages) | Published packages.                                                                          |
+| [tools](tools)       | Internal packages uses to support the development and maintenance of the published packages. |
+| [data](data)         | Scraped PostGREST error data.                                                                |
+| [.github](.github)   | GitHub related configurations.                                                               |
