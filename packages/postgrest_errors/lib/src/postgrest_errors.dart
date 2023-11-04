@@ -333,7 +333,7 @@ enum PostgrestError {
     int? code,
     String? details,
   }) {
-    final exceptionMessage = (json['message'] ?? message) as String;
+    final exceptionMessage = (json['message'] ?? message ?? '') as String;
     final exceptionCode = (json['code'] ?? '$code') as String?;
     final exceptionDetails = (json['details'] ?? details) as dynamic;
     final exceptionHint = json['hint'] as String?;
