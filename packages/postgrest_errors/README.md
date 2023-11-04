@@ -1,3 +1,5 @@
+[<img src="https://raw.githubusercontent.com/alestiago/postgrest_errors/b4d4f6422e3d5f61bba5582b3d6b7ffbfb1fcb9f/packages/postgrest_errors/assets/logo.png" width="100px"/>](https://cli.vgv.dev/)
+
 # PostgREST errors
 
 [![ci](https://img.shields.io/github/actions/workflow/status/alestiago/postgrest_errors/postgrest_errors_package.yaml)](https://github.com/alestiago/postgrest_errors/actions)
