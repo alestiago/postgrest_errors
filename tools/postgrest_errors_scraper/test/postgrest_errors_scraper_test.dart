@@ -14,7 +14,7 @@ class _MockResponse extends Mock implements http.Response {}
 
 final _fixtureFileContent = File(postgrestErrorsFixturePath).readAsStringSync();
 
-/// All the selectors used to scrape the Postgrest errors, that when missing
+/// All the selectors used to scrape the Postgrest errors that when missing
 /// should throw a [PostgrestErrorsScraperException].
 const _querySelectors = {
   '#postgrest-error-codes',
