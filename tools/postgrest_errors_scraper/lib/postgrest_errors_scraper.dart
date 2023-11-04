@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:html/dom.dart' as html_dom;
 import 'package:html/parser.dart' as html_parser;
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as path;
 import 'package:meta/meta.dart';
 
 /// {@template PostgrestErrorsScraperException}
@@ -212,17 +208,17 @@ Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
 }) async {
   final client = clientOverride ?? http.Client();
 
-  final request = await client.get(postgrestErrorsUri);
+  final response = await client.get(postgrestErrorsUri);
 
-  if (request.statusCode != 200) {
+  if (response.statusCode != 200) {
     throw PostgrestErrorsScraperException(
-      '''Request to "$postgrestErrorsUri" failed with status code "${request.statusCode}"''',
+      '''Request to "$postgrestErrorsUri" failed with status code "${response.statusCode}"''',
     );
   }
 
   late final html_dom.Document document;
   try {
-    document = html_parser.parse(request.body);
+    document = html_parser.parse(response.body);
   } catch (e) {
     throw PostgrestErrorsScraperException(
       'Failed to parse the HTML document',
@@ -258,22 +254,4 @@ Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
   }
 
   return groups;
-}
-
-/// Will scrape the PostgREST errors and update the static JSON data file.
-void main() async {
-  final groups = await scrapePostgrestErrors();
-
-  final jsonGroups = groups.map((e) => e.toJson()).toList();
-  final json = jsonEncode(jsonGroups);
-
-  final projectRoot = Directory.current.parent.parent;
-  final filePath = path.join(
-    projectRoot.path,
-    'data',
-    'errors.json',
-  );
-  File(filePath)
-    ..createSync(recursive: true)
-    ..writeAsStringSync(json);
 }

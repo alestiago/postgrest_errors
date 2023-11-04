@@ -18,19 +18,20 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:postgrest_errors_scraper/postgrest_errors_scraper.dart';
 
+final postgrestErrorsFixturePath = path.join(
+  Directory.current.path,
+  'test',
+  'fixtures',
+  'postgrest_errors_fixture.html',
+);
+
 void main() async {
   final response = await http.get(postgrestErrorsUri);
 
-  final fixturePath = path.join(
-    Directory.current.path,
-    'test',
-    'fixtures',
-    'postgrest_errors_fixture.html',
-  );
-  File(fixturePath)
+  File(postgrestErrorsFixturePath)
     ..createSync(recursive: true)
     ..writeAsStringSync(response.body);
 
   // ignore: avoid_print
-  print('Fixture generated at $fixturePath');
+  print('Fixture generated at $postgrestErrorsFixturePath');
 }
