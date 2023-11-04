@@ -16,7 +16,7 @@ PostgrestError.pgrst001.description; // The server is currently unavailable (bec
 
 ### Parsing incoming PostgREST exceptions
 
-Easily parse an incoming PostgREST error with `PostgrestError.fromJson`.
+Easily parse an incoming PostgREST error response with `PostgrestError.fromJson`.
 
 ```dart
 import 'dart:convert';
