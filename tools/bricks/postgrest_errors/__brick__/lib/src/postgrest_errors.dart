@@ -15,7 +15,7 @@ enum PostgrestError {
   {{#data}}
     {{#errors}}
       /// {{{description}}}
-      pgrst{{#lowerCase}}{{code}}{{/lowerCase}}._(code: 'PGRST{{code}}', httpStatus: '{{httpStatus}}', description: '''{{{description}}}''',),
+      pgrst{{#pascalCase}}{{code}}{{/pascalCase}}._(code: 'PGRST{{code}}', httpStatus: '{{httpStatus}}', description: '''{{{description}}}''',),
     {{/errors}}
   {{/data}}
   ;
@@ -38,7 +38,7 @@ enum PostgrestError {
   static final _codeToExceptionBuilder = <String, _PostgrestExceptionBuilder>{
 {{#data}}
   {{#errors}}
-    'PGRST{{code}}': Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception._,
+    'PGRST{{code}}': Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception.new,
   {{/errors}}
 {{/data}}
   };
@@ -46,7 +46,7 @@ enum PostgrestError {
   /// Returns a [PostgrestException] from a [json] response.
   ///
   /// The function signature matches [PostgrestException.fromJson].
-  static PostgrestException fromJsonAsPostgrestException(
+  static PostgrestException fromJson(
     Map<String, dynamic> json, {
     String? message,
     int? code,
@@ -82,7 +82,7 @@ enum PostgrestError {
 /// {@endtemplate}
 class Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception extends PostgrestException {
   /// {@macro {{#pascalCase}}{{code}}{{/pascalCase}}Exception}
-  Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception._({
+  Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception({
     required super.message,
     super.hint,
     super.details,
