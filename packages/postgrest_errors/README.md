@@ -1,10 +1,22 @@
 # PostgREST errors
 
-A collection of all [PostgREST errors](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) in Dart.
+A generated collection of all [PostgREST errors](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) errors definitions in Dart.
 
 ## Usage
 
+### Accessing raw PostgREST error data
+
+The `PostgrestError` enhanced enumeration provides all documented PostgREST Errors with their code, HTTP Status and description.
+
+```dart
+PostgrestError.pgrst001.code; // PGRST001
+PostgrestError.pgrst001.httpStatus; // 503
+PostgrestError.pgrst001.description; // The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
+```
+
 ### Parsing incoming PostgREST exceptions
+
+Easily parse an incoming PostgREST error with `PostgrestError.fromJson`.
 
 ```dart
 import 'dart:convert';
@@ -25,14 +37,4 @@ void main() async {
     throw PostgrestError.fromJson(json);
   }
 }
-```
-
-### Accessing raw PostgREST error data
-
-The `PostgrestError` enhanced enumeration provides all documented PostgREST Errors with their code, HTTP Status and description.
-
-```dart
-PostgrestError.pgrst001.code; // PGRST001
-PostgrestError.pgrst001.httpStatus; // 503
-PostgrestError.pgrst001.description; // The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
 ```
