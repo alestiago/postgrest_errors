@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/packages/postgrest_errors"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/tools/bricks/postgrest_errors/hooks"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/tools/postgrest_errors_scraper"
+    schedule:
+      interval: "daily"
