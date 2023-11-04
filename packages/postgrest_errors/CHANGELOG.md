@@ -1,3 +1,7 @@
+# 0.1.0+1
+
+- docs: enhance README with logo and badges ([#10](https://github.com/alestiago/postgrest_errors/pull/10))
+
 # 0.1.0
 
 - docs: improved pubspec.yaml and README.md ([#2](https://github.com/alestiago/postgrest_errors/pull/2))
