@@ -4,3 +4,8 @@ version: 0.1.0+1
 
 environment:
   mason: ">=0.1.0-dev.51 <0.1.0"
+
+vars:
+  data-path:
+    type: string
+    description: The path to the PostgREST errors JSON data file (relative to the output directory).
