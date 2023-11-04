@@ -138,7 +138,7 @@ void main() {
       );
     });
 
-    test('returns not empty Set', () async {
+    test('returns non empty Set', () async {
       final result = await scrapePostgrestErrors(client: client);
       expect(result, isNotEmpty);
     });
@@ -205,6 +205,7 @@ void main() {
 }
 
 extension on html_dom.Document {
+  /// Removes all the elements matching the given [selectors].
   html_dom.Document removeAll(Iterable<String> selectors) {
     for (final selector in selectors) {
       final elements = querySelectorAll(selector);
