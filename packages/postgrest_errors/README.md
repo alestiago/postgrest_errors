@@ -10,7 +10,7 @@
 
 ---
 
-A generated typed collection of all [PostgREST error](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) definitions in Dart.
+A generated typed collection of all [PostgREST error](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) definitions for Dart 🎯
 
 ## Usage 🧑‍💻
 
