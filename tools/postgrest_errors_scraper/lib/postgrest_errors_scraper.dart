@@ -195,6 +195,7 @@ class PostgrestErrorGroup {
 }
 
 /// Function signature of [html_parser.parse].
+// ignore: avoid_private_typedef_functions
 typedef _HtmlParse = html_dom.Document Function(
   dynamic input, {
   String? encoding,

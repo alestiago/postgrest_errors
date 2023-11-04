@@ -1,10 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:io';
-import 'package:postgrest_errors_scraper/postgrest_errors_scraper.dart';
-import 'package:test/test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:html/dom.dart' as html_dom;
 import 'package:html/parser.dart' as html_parser;
+import 'package:http/http.dart' as http;
+import 'package:mocktail/mocktail.dart';
+import 'package:postgrest_errors_scraper/postgrest_errors_scraper.dart';
+import 'package:test/test.dart';
 
 import 'fixtures/generate_postgrest_errors_fixture.dart';
 
@@ -151,15 +154,18 @@ void main() {
             '''Request to "$postgrestErrorsUri" failed with status code "${response.statusCode}"''';
         await expectLater(
           () => scrapePostgrestErrors(client: client),
-          throwsA(isA<PostgrestErrorsScraperException>().having(
-            (exception) => exception.message,
-            'message',
-            equals(errorMessage),
-          )),
+          throwsA(
+            isA<PostgrestErrorsScraperException>().having(
+              (exception) => exception.message,
+              'message',
+              equals(errorMessage),
+            ),
+          ),
         );
       });
 
       test('when HTML parser fails', () {
+        // ignore: prefer_function_declarations_over_variables
         final htmlParser = (
           dynamic input, {
           String? encoding,
@@ -209,7 +215,6 @@ extension on html_dom.Document {
   html_dom.Document removeAll(Iterable<String> selectors) {
     for (final selector in selectors) {
       final elements = querySelectorAll(selector);
-      print('selector: $selector, isEmpty: ${elements.isEmpty}');
       for (final element in elements) {
         element.remove();
       }
