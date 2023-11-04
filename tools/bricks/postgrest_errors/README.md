@@ -1,6 +1,8 @@
-# 🧱 PostGREST errors brick
+[<img src="https://raw.githubusercontent.com/alestiago/postgrest_errors/b4d4f6422e3d5f61bba5582b3d6b7ffbfb1fcb9f/packages/postgrest_errors/assets/logo.png" width="65px" align="left"/>](https://cli.vgv.dev/)
 
-# Usage 🧑‍💻
+# PostgREST errors' brick
+
+## Usage 🧑‍💻
 
 1.  Install a valid [Dart SDK](https://dart.dev/get-dart) in your local environment. Compatible Dart SDK versions with `package:hooks` can be found within the [pubspec](hooks/pubspec.yaml). If you have Flutter installed, you likely have a valid Dart SDK version already installed.
 
