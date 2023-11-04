@@ -195,8 +195,8 @@ class PostgrestErrorGroup {
 }
 
 /// Function signature of [html_parser.parse].
-// ignore: avoid_private_typedef_functions
-typedef _HtmlParse = html_dom.Document Function(
+@visibleForTesting
+typedef HtmlParse = html_dom.Document Function(
   dynamic input, {
   String? encoding,
   bool generateSpans,
@@ -217,7 +217,7 @@ typedef _HtmlParse = html_dom.Document Function(
 /// ```
 Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
   required http.Client client,
-  @visibleForTesting _HtmlParse htmlParser = html_parser.parse,
+  @visibleForTesting HtmlParse htmlParser = html_parser.parse,
 }) async {
   final response = await client.get(postgrestErrorsUri);
 
@@ -245,11 +245,11 @@ Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
   }
 
   final groupsElementSelector = {
-    "#group-0-connection",
-    "#group-1-api-request",
-    "#group-2-schema-cache",
-    "#group-3-jwt",
-    "#group-x-internal",
+    '#group-0-connection',
+    '#group-1-api-request',
+    '#group-2-schema-cache',
+    '#group-3-jwt',
+    '#group-x-internal',
   };
   final groups = <PostgrestErrorGroup>{};
   for (final groupElementSelector in groupsElementSelector) {
