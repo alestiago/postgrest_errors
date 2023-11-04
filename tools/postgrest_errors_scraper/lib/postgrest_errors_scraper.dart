@@ -3,6 +3,12 @@ import 'package:html/parser.dart' as html_parser;
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
+/// The URI to scrape the PostgREST errors from.
+@visibleForTesting
+final postgrestErrorsUri = Uri.parse(
+  'https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes',
+);
+
 /// {@template PostgrestErrorsScraperException}
 /// An exception thrown when PostgrestErrorsScraper fails.
 /// {@endtemplate}
@@ -26,6 +32,7 @@ class PostgrestErrorsScraperException implements Exception {
 /// {@endtemplate}
 class PostgrestError {
   /// {@macro _PostgrestError}
+  @visibleForTesting
   const PostgrestError({
     required this.code,
     required this.httpStatus,
@@ -89,6 +96,7 @@ class PostgrestError {
 /// {@endtemplate}
 class PostgrestErrorGroup {
   /// {@macro _PostgrestErrorGroup}
+  @visibleForTesting
   const PostgrestErrorGroup({
     required this.name,
     required this.description,
@@ -185,11 +193,6 @@ class PostgrestErrorGroup {
     };
   }
 }
-
-/// The URI to scrape the PostgREST errors from.
-final postgrestErrorsUri = Uri.parse(
-  'https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes',
-);
 
 /// Scrapes PostgREST errors from [postgrestErrorsUri].
 ///

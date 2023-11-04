@@ -14,6 +14,91 @@ class _MockResponse extends Mock implements http.Response {}
 final _fixtureFileContent = File(postgrestErrorsFixturePath).readAsStringSync();
 
 void main() {
+  group('PostgrestErrorsScraperException', () {
+    test('can be instantiated', () {
+      expect(
+        PostgrestErrorsScraperException('message'),
+        isA<PostgrestErrorsScraperException>(),
+      );
+    });
+
+    test('toString includes class name and message', () {
+      expect(
+        PostgrestErrorsScraperException('message').toString(),
+        equals('PostgrestErrorsScraperException: message'),
+      );
+    });
+  });
+
+  group('PostgrestError', () {
+    test('can be instantiated', () {
+      expect(
+        PostgrestError(
+          code: 'code',
+          httpStatus: 'httpStatus',
+          description: 'description',
+        ),
+        isA<PostgrestError>(),
+      );
+    });
+
+    test('toJson composes Map correctly', () {
+      final error = PostgrestError(
+        code: 'code',
+        httpStatus: 'httpStatus',
+        description: 'description',
+      );
+
+      final json = error.toJson();
+
+      expect(
+        json,
+        equals({
+          'code': 'code',
+          'httpStatus': 'httpStatus',
+          'description': 'description',
+        }),
+      );
+    });
+  });
+
+  group('PostgrestErrorGroup', () {
+    test('can be instantiated', () {
+      expect(
+        PostgrestErrorGroup(
+          name: 'name',
+          description: 'description',
+          errors: [],
+        ),
+        isA<PostgrestErrorGroup>(),
+      );
+    });
+
+    test('fromJson composes Map correctly', () {
+      final error = PostgrestError(
+        code: 'code',
+        httpStatus: 'httpStatus',
+        description: 'description',
+      );
+      final errorGroup = PostgrestErrorGroup(
+        name: 'name',
+        description: 'description',
+        errors: [error],
+      );
+
+      final json = errorGroup.toJson();
+
+      expect(
+        json,
+        equals({
+          'name': 'name',
+          'description': 'description',
+          'errors': [error.toJson()],
+        }),
+      );
+    });
+  });
+
   group('scrapePostgrestErrors', () {
     late http.Client client;
     late http.Response response;
