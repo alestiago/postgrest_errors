@@ -2,13 +2,13 @@
 
 # PostgREST errors
 
-A generated collection of all [PostgREST error](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) definitions in Dart.
+A generated typed collection of all [PostgREST error](https://postgrest.org/en/stable/references/errors.html#postgrest-error-codes) definitions in Dart.
 
 ## Packages
 
-| Packages                                       | Pub                                                                                                            | Descritption        |
-| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- |
-| [postgrest_errors](packages/postgrest_errors/) | [![pub package](https://img.shields.io/pub/v/postgrest_errors.svg)](https://pub.dev/packages/postgrest_errors) | Published packages. |
+| Packages                                       | Pub                                                                                                            |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [postgrest_errors](packages/postgrest_errors/) | [![pub package](https://img.shields.io/pub/v/postgrest_errors.svg)](https://pub.dev/packages/postgrest_errors) |
 
 ## Table of content
 
