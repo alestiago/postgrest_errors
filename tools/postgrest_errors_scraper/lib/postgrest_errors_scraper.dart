@@ -194,6 +194,14 @@ class PostgrestErrorGroup {
   }
 }
 
+/// Function signature of [html_parser.parse].
+typedef _HtmlParse = html_dom.Document Function(
+  dynamic input, {
+  String? encoding,
+  bool generateSpans,
+  String? sourceUrl,
+});
+
 /// Scrapes PostgREST errors from [postgrestErrorsUri].
 ///
 /// The retrieved HTML document should have the following structure:
@@ -207,10 +215,9 @@ class PostgrestErrorGroup {
 /// </div>
 /// ```
 Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
-  @visibleForTesting http.Client? clientOverride,
+  required http.Client client,
+  @visibleForTesting _HtmlParse htmlParser = html_parser.parse,
 }) async {
-  final client = clientOverride ?? http.Client();
-
   final response = await client.get(postgrestErrorsUri);
 
   if (response.statusCode != 200) {
@@ -221,7 +228,7 @@ Future<Set<PostgrestErrorGroup>> scrapePostgrestErrors({
 
   late final html_dom.Document document;
   try {
-    document = html_parser.parse(response.body);
+    document = htmlParser(response.body);
   } catch (e) {
     throw PostgrestErrorsScraperException(
       'Failed to parse the HTML document',
