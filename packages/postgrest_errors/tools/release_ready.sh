@@ -3,7 +3,7 @@
 # Will update the pubspec.yaml file and update the CHANGELOG.md.
 #
 # Set it up for a new version:
-# `./tools/release_ready.sh <version>
+# `sh ./tools/release_ready.sh <version>`
 
 # Check if current directory is usable for this script, if so we assume it is correctly set up.
 if [ ! -f "pubspec.yaml" ]; then
