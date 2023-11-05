@@ -1,0 +1,13 @@
+name: publish_postgrest_errors_dart_package
+
+on:
+  push:
+    tags:
+      - "postgrest_errors_dart_package-*"
+
+jobs:
+  publish_package:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
+    with:
+      working_directory: packages/postgrest_errors
+      pub_credentials: secrets.PUB_CREDENTIALS
