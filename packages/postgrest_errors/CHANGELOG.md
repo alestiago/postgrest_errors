@@ -1,3 +1,7 @@
+# 0.1.0+3
+
+- docs: fix erroneous README logo link ([#23](https://github.com/alestiago/postgrest_errors/pull/23))
+
 # 0.1.0+2
 
 - docs: improve README and description ([#18](https://github.com/alestiago/postgrest_errors/pull/18) and [#19](https://github.com/alestiago/postgrest_errors/pull/19))
