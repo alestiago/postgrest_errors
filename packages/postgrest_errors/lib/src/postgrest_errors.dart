@@ -360,7 +360,7 @@ enum PostgrestError {
 /// Could not connect with the database due to an incorrect db-uri or due to the PostgreSQL service not running.
 /// {@endtemplate}
 class Postgrest000Exception extends PostgrestException {
-  /// {@macro 000Exception}
+  /// {@macro Postgrest000Exception}
   Postgrest000Exception({
     required super.message,
     super.hint,
@@ -372,7 +372,7 @@ class Postgrest000Exception extends PostgrestException {
 /// Could not connect with the database due to an internal error.
 /// {@endtemplate}
 class Postgrest001Exception extends PostgrestException {
-  /// {@macro 001Exception}
+  /// {@macro Postgrest001Exception}
   Postgrest001Exception({
     required super.message,
     super.hint,
@@ -384,7 +384,7 @@ class Postgrest001Exception extends PostgrestException {
 /// Could not connect with the database when building the Schema Cache due to the PostgreSQL service not running.
 /// {@endtemplate}
 class Postgrest002Exception extends PostgrestException {
-  /// {@macro 002Exception}
+  /// {@macro Postgrest002Exception}
   Postgrest002Exception({
     required super.message,
     super.hint,
@@ -396,7 +396,7 @@ class Postgrest002Exception extends PostgrestException {
 /// The request timed out waiting for a pool connection to be available. See db-pool-acquisition-timeout.
 /// {@endtemplate}
 class Postgrest003Exception extends PostgrestException {
-  /// {@macro 003Exception}
+  /// {@macro Postgrest003Exception}
   Postgrest003Exception({
     required super.message,
     super.hint,
@@ -408,7 +408,7 @@ class Postgrest003Exception extends PostgrestException {
 /// Parsing error in the query string parameter. See Horizontal Filtering, Operators and Ordering.
 /// {@endtemplate}
 class Postgrest100Exception extends PostgrestException {
-  /// {@macro 100Exception}
+  /// {@macro Postgrest100Exception}
   Postgrest100Exception({
     required super.message,
     super.hint,
@@ -420,7 +420,7 @@ class Postgrest100Exception extends PostgrestException {
 /// For functions, only GET and POST verbs are allowed. Any other verb will throw this error.
 /// {@endtemplate}
 class Postgrest101Exception extends PostgrestException {
-  /// {@macro 101Exception}
+  /// {@macro Postgrest101Exception}
   Postgrest101Exception({
     required super.message,
     super.hint,
@@ -432,7 +432,7 @@ class Postgrest101Exception extends PostgrestException {
 /// An invalid request body was sent(e.g. an empty body or malformed JSON).
 /// {@endtemplate}
 class Postgrest102Exception extends PostgrestException {
-  /// {@macro 102Exception}
+  /// {@macro Postgrest102Exception}
   Postgrest102Exception({
     required super.message,
     super.hint,
@@ -444,7 +444,7 @@ class Postgrest102Exception extends PostgrestException {
 /// An invalid range was specified for Limits and Pagination.
 /// {@endtemplate}
 class Postgrest103Exception extends PostgrestException {
-  /// {@macro 103Exception}
+  /// {@macro Postgrest103Exception}
   Postgrest103Exception({
     required super.message,
     super.hint,
@@ -456,7 +456,7 @@ class Postgrest103Exception extends PostgrestException {
 /// An invalid PUT request was done
 /// {@endtemplate}
 class Postgrest105Exception extends PostgrestException {
-  /// {@macro 105Exception}
+  /// {@macro Postgrest105Exception}
   Postgrest105Exception({
     required super.message,
     super.hint,
@@ -468,7 +468,7 @@ class Postgrest105Exception extends PostgrestException {
 /// The schema specified when switching schemas is not present in the db-schemas configuration variable.
 /// {@endtemplate}
 class Postgrest106Exception extends PostgrestException {
-  /// {@macro 106Exception}
+  /// {@macro Postgrest106Exception}
   Postgrest106Exception({
     required super.message,
     super.hint,
@@ -480,7 +480,7 @@ class Postgrest106Exception extends PostgrestException {
 /// The Content-Type sent in the request is invalid.
 /// {@endtemplate}
 class Postgrest107Exception extends PostgrestException {
-  /// {@macro 107Exception}
+  /// {@macro Postgrest107Exception}
   Postgrest107Exception({
     required super.message,
     super.hint,
@@ -492,7 +492,7 @@ class Postgrest107Exception extends PostgrestException {
 /// The filter is applied to a embedded resource that is not specified in the select part of the query string. See Embedded Filters.
 /// {@endtemplate}
 class Postgrest108Exception extends PostgrestException {
-  /// {@macro 108Exception}
+  /// {@macro Postgrest108Exception}
   Postgrest108Exception({
     required super.message,
     super.hint,
@@ -504,7 +504,7 @@ class Postgrest108Exception extends PostgrestException {
 /// Restricting a Deletion or an Update using limits must include the ordering of a unique column. See Limited Update&#x2F;Delete.
 /// {@endtemplate}
 class Postgrest109Exception extends PostgrestException {
-  /// {@macro 109Exception}
+  /// {@macro Postgrest109Exception}
   Postgrest109Exception({
     required super.message,
     super.hint,
@@ -516,7 +516,7 @@ class Postgrest109Exception extends PostgrestException {
 /// When restricting a Deletion or an Update using limits modifies more rows than the maximum specified in the limit. See Limited Update&#x2F;Delete.
 /// {@endtemplate}
 class Postgrest110Exception extends PostgrestException {
-  /// {@macro 110Exception}
+  /// {@macro Postgrest110Exception}
   Postgrest110Exception({
     required super.message,
     super.hint,
@@ -528,7 +528,7 @@ class Postgrest110Exception extends PostgrestException {
 /// An invalid response.headers was set. See Response Headers.
 /// {@endtemplate}
 class Postgrest111Exception extends PostgrestException {
-  /// {@macro 111Exception}
+  /// {@macro Postgrest111Exception}
   Postgrest111Exception({
     required super.message,
     super.hint,
@@ -540,7 +540,7 @@ class Postgrest111Exception extends PostgrestException {
 /// The status code must be a positive integer. See Response Status Code.
 /// {@endtemplate}
 class Postgrest112Exception extends PostgrestException {
-  /// {@macro 112Exception}
+  /// {@macro Postgrest112Exception}
   Postgrest112Exception({
     required super.message,
     super.hint,
@@ -552,7 +552,7 @@ class Postgrest112Exception extends PostgrestException {
 /// More than one column was returned for a scalar result. See Scalar Function Response Format.
 /// {@endtemplate}
 class Postgrest113Exception extends PostgrestException {
-  /// {@macro 113Exception}
+  /// {@macro Postgrest113Exception}
   Postgrest113Exception({
     required super.message,
     super.hint,
@@ -564,7 +564,7 @@ class Postgrest113Exception extends PostgrestException {
 /// For an UPSERT using PUT, when limits and offsets are used.
 /// {@endtemplate}
 class Postgrest114Exception extends PostgrestException {
-  /// {@macro 114Exception}
+  /// {@macro Postgrest114Exception}
   Postgrest114Exception({
     required super.message,
     super.hint,
@@ -576,7 +576,7 @@ class Postgrest114Exception extends PostgrestException {
 /// For an UPSERT using PUT, when the primary key in the query string and the body are different.
 /// {@endtemplate}
 class Postgrest115Exception extends PostgrestException {
-  /// {@macro 115Exception}
+  /// {@macro Postgrest115Exception}
   Postgrest115Exception({
     required super.message,
     super.hint,
@@ -588,7 +588,7 @@ class Postgrest115Exception extends PostgrestException {
 /// More than 1 or no items where returned when requesting a singular response. See Singular or Plural.
 /// {@endtemplate}
 class Postgrest116Exception extends PostgrestException {
-  /// {@macro 116Exception}
+  /// {@macro Postgrest116Exception}
   Postgrest116Exception({
     required super.message,
     super.hint,
@@ -600,7 +600,7 @@ class Postgrest116Exception extends PostgrestException {
 /// The HTTP verb used in the request in not supported.
 /// {@endtemplate}
 class Postgrest117Exception extends PostgrestException {
-  /// {@macro 117Exception}
+  /// {@macro Postgrest117Exception}
   Postgrest117Exception({
     required super.message,
     super.hint,
@@ -612,7 +612,7 @@ class Postgrest117Exception extends PostgrestException {
 /// Could not order the result using the related table because there is no many-to-one or one-to-one relationship between them.
 /// {@endtemplate}
 class Postgrest118Exception extends PostgrestException {
-  /// {@macro 118Exception}
+  /// {@macro Postgrest118Exception}
   Postgrest118Exception({
     required super.message,
     super.hint,
@@ -624,7 +624,7 @@ class Postgrest118Exception extends PostgrestException {
 /// Could not use the spread operator on the related table because there is no many-to-one or one-to-one relationship between them.
 /// {@endtemplate}
 class Postgrest119Exception extends PostgrestException {
-  /// {@macro 119Exception}
+  /// {@macro Postgrest119Exception}
   Postgrest119Exception({
     required super.message,
     super.hint,
@@ -636,7 +636,7 @@ class Postgrest119Exception extends PostgrestException {
 /// An embedded resource can only be filtered using the is.null or not.is.null operators.
 /// {@endtemplate}
 class Postgrest120Exception extends PostgrestException {
-  /// {@macro 120Exception}
+  /// {@macro Postgrest120Exception}
   Postgrest120Exception({
     required super.message,
     super.hint,
@@ -648,7 +648,7 @@ class Postgrest120Exception extends PostgrestException {
 /// Caused by stale foreign key relationships, otherwise any of the embedding resources or the relationship itself may not exist in the database.
 /// {@endtemplate}
 class Postgrest200Exception extends PostgrestException {
-  /// {@macro 200Exception}
+  /// {@macro Postgrest200Exception}
   Postgrest200Exception({
     required super.message,
     super.hint,
@@ -660,7 +660,7 @@ class Postgrest200Exception extends PostgrestException {
 /// An ambiguous embedding request was made. See Foreign Key Joins on Multiple Foreign Key Relationships.
 /// {@endtemplate}
 class Postgrest201Exception extends PostgrestException {
-  /// {@macro 201Exception}
+  /// {@macro Postgrest201Exception}
   Postgrest201Exception({
     required super.message,
     super.hint,
@@ -672,7 +672,7 @@ class Postgrest201Exception extends PostgrestException {
 /// Caused by a stale function signature, otherwise the function may not exist in the database.
 /// {@endtemplate}
 class Postgrest202Exception extends PostgrestException {
-  /// {@macro 202Exception}
+  /// {@macro Postgrest202Exception}
   Postgrest202Exception({
     required super.message,
     super.hint,
@@ -684,7 +684,7 @@ class Postgrest202Exception extends PostgrestException {
 /// Caused by requesting overloaded functions with the same argument names but different types, or by using a POST verb to request overloaded functions with a JSON or JSONB type unnamed parameter. The solution is to rename the function or add&#x2F;modify the names of the arguments.
 /// {@endtemplate}
 class Postgrest203Exception extends PostgrestException {
-  /// {@macro 203Exception}
+  /// {@macro Postgrest203Exception}
   Postgrest203Exception({
     required super.message,
     super.hint,
@@ -696,7 +696,7 @@ class Postgrest203Exception extends PostgrestException {
 /// Caused when the column specified in the columns query parameter is not found.
 /// {@endtemplate}
 class Postgrest204Exception extends PostgrestException {
-  /// {@macro 204Exception}
+  /// {@macro Postgrest204Exception}
   Postgrest204Exception({
     required super.message,
     super.hint,
@@ -708,7 +708,7 @@ class Postgrest204Exception extends PostgrestException {
 /// A JWT secret is missing from the configuration.
 /// {@endtemplate}
 class Postgrest300Exception extends PostgrestException {
-  /// {@macro 300Exception}
+  /// {@macro Postgrest300Exception}
   Postgrest300Exception({
     required super.message,
     super.hint,
@@ -720,7 +720,7 @@ class Postgrest300Exception extends PostgrestException {
 /// Any error related to the verification of the JWT, which means that the JWT provided is invalid in some way.
 /// {@endtemplate}
 class Postgrest301Exception extends PostgrestException {
-  /// {@macro 301Exception}
+  /// {@macro Postgrest301Exception}
   Postgrest301Exception({
     required super.message,
     super.hint,
@@ -732,7 +732,7 @@ class Postgrest301Exception extends PostgrestException {
 /// Attempted to do a request without authentication when the anonymous role is disabled by not setting it in db-anon-role.
 /// {@endtemplate}
 class Postgrest302Exception extends PostgrestException {
-  /// {@macro 302Exception}
+  /// {@macro Postgrest302Exception}
   Postgrest302Exception({
     required super.message,
     super.hint,
@@ -744,7 +744,7 @@ class Postgrest302Exception extends PostgrestException {
 /// Internal errors related to the library used for connecting to the database.
 /// {@endtemplate}
 class PostgrestX00Exception extends PostgrestException {
-  /// {@macro X00Exception}
+  /// {@macro PostgrestX00Exception}
   PostgrestX00Exception({
     required super.message,
     super.hint,

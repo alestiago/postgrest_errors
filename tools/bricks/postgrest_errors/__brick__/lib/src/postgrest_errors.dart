@@ -81,7 +81,7 @@ enum PostgrestError {
 /// {{description}}
 /// {@endtemplate}
 class Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception extends PostgrestException {
-  /// {@macro {{#pascalCase}}{{code}}{{/pascalCase}}Exception}
+  /// {@macro Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception}
   Postgrest{{#pascalCase}}{{code}}{{/pascalCase}}Exception({
     required super.message,
     super.hint,
