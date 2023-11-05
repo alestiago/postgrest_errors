@@ -1,3 +1,7 @@
+# 0.1.1
+
+- docs: PostgrestException constructor template macro ([#25](https://github.com/alestiago/postgrest_errors/pull/25))
+
 # 0.1.0+3
 
 - docs: fix erroneous README logo link ([#23](https://github.com/alestiago/postgrest_errors/pull/23))
