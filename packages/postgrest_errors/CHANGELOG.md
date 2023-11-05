@@ -1,7 +1,6 @@
 # 0.1.0+3
 
-- chore: .pubignore ([#22](https://github.com/alestiago/postgrest_errors/pull/22))
-- chore: fix erroneous logo link ([#23](https://github.com/alestiago/postgrest_errors/pull/23))
+- docs: fix erroneous README logo link ([#23](https://github.com/alestiago/postgrest_errors/pull/23))
 
 # 0.1.0+2
 
