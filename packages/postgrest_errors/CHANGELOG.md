@@ -1,3 +1,7 @@
+# 0.1.0+2
+
+- docs: improve README and description ([#18](https://github.com/alestiago/postgrest_errors/pull/18) and [#19](https://github.com/alestiago/postgrest_errors/pull/19))
+
 # 0.1.0+1
 
 - docs: enhance README with logo and badges ([#10](https://github.com/alestiago/postgrest_errors/pull/10))
