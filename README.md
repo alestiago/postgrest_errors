@@ -16,5 +16,5 @@ A generated typed collection of all [PostgREST error](https://postgrest.org/en/s
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | [packages](packages) | Published packages.                                                                          |
 | [tools](tools)       | Internal packages uses to support the development and maintenance of the published packages. |
-| [data](data)         | Scraped PostGREST error data.                                                                |
+| [data](data)         | Scraped PostgREST error data.                                                                |
 | [.github](.github)   | GitHub related configurations.                                                               |
